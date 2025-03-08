@@ -91,12 +91,12 @@ def getNodes(user_id=None):
                                 offline_nodes += 1
                         
                         # 构建标题和统计信息
-                        text = f'''📡 <b>节点状态</b>
-————————————
-<b>总节点数</b>: {total_nodes}
-<b>在线节点</b>: {online_nodes}
-<b>离线节点</b>: {offline_nodes}
-————————————\n'''
+                        text = f'''<b>📡 节点状态概览</b>
+━━━━━━━━━━━━━━━━
+<code>✅ 总节点数</code>: <b>{total_nodes}</b> 个
+<code>🟢 在线节点</code>: <b>{online_nodes}</b> 个
+<code>🔴 离线节点</code>: <b>{offline_nodes}</b> 个
+━━━━━━━━━━━━━━━━\n'''
                         
                         # 添加节点详细信息
                         for item in data['data']:
@@ -117,17 +117,47 @@ def getNodes(user_id=None):
                             # 获取节点状态
                             status = item.get('available_status', False)
                             status_text = '🟢 在线' if status else '🔴 离线'
-                            online = str(item.get('online', 0)) + '人'
+                            online = str(item.get('online', 0)) + ' 人'
                             
-                            # 美化节点信息显示
-                            line = f'''<b>节点名称</b>: {node_name}
-<b>运行状态</b>: {status_text}
-<b>在线人数</b>: {online}
-————————————\n'''
+                            # 提取节点类型和位置信息
+                            node_type = ""
+                            if "高级" in node_name:
+                                node_type = "⭐️"  # 高级节点
+                            elif "标准" in node_name:
+                                node_type = "🔹"  # 标准节点
+                            elif "IPLC" in node_name.upper() or "专线" in node_name:
+                                node_type = "💎"  # IPLC专线节点
+                            else:
+                                node_type = "🔸"  # 普通节点
+                            
+                            # 获取负载情况
+                            load = item.get('load', 0)
+                            load_text = ""
+                            if load <= 30:
+                                load_text = "⚡️ 极速"
+                            elif load <= 70:
+                                load_text = "⚡ 良好" 
+                            else:
+                                load_text = "🐢 拥挤"
+                            
+                            # 美化节点信息显示 - 更紧凑简洁的设计
+                            if status:  # 在线节点
+                                line = f'''{node_type} <code>{node_name}</code>
+  ├─ {status_text} | {load_text} | <code>{online}</code>
+  └─────────────────\n'''
+                            else:  # 离线节点 - 简化显示
+                                line = f'''{node_type} <s><code>{node_name}</code></s>
+  └─ {status_text}
+  └─────────────────\n'''
+                            
                             text += line
                             
                         if text == '📡 <b>节点状态</b>\n————————————\n':
                             return '❌ 没有可用的节点信息'
+                            
+                        # 添加底部提示
+                        text += '''
+<i>💡 节点状态每 5 分钟更新一次</i>'''
                             
                         return text.rstrip()
                 except json.JSONDecodeError:
