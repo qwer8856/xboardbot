@@ -1,6 +1,6 @@
-# V2Board 节点监控程序
+# XBoard 节点监控程序
 
-这是一个用于监控 V2Board 面板节点状态的程序，可以自动检测节点是否掉线，并通过 Telegram 发送通知给管理员和群组。
+这是一个用于监控 XBoard 面板节点状态的程序，可以自动检测节点是否掉线，并通过 Telegram 发送通知给管理员和群组。
 
 ## 功能特点
 
@@ -19,7 +19,7 @@
 
 1. 安装必要的 Python 包：
 ```bash
-/root/v2boardbot/python-3.9.7/bin/pip3.9 install python-telegram-bot requests pytz
+/root/xboardbot/python-3.9.7/bin/pip3.9 install python-telegram-bot requests pytz
 ```
 
 2. 确保配置文件正确：
@@ -56,8 +56,8 @@ apt-get install screen
 
 2. 启动监控程序：
 ```bash
-cd /root/v2boardbot/node_monitor
-screen -S v2board_monitor
+cd /root/xboardbot/node_monitor
+screen -S xboard_monitor
 python3.9 monitor.py
 ```
 
@@ -67,7 +67,7 @@ python3.9 monitor.py
 ### 使用 Nohup 运行（备选方案）
 
 ```bash
-cd /root/v2boardbot/node_monitor
+cd /root/xboardbot/node_monitor
 nohup python3.9 monitor.py > monitor.out 2>&1 &
 ```
 
@@ -82,17 +82,17 @@ screen -ls
 
 - 重新连接到监控会话：
 ```bash
-screen -r v2board_monitor
+screen -r xboard_monitor
 ```
 
 - 停止程序：
-  1. 重新连接到会话：`screen -r v2board_monitor`
+  1. 重新连接到会话：`screen -r xboard_monitor`
   2. 按 `Ctrl + C` 停止程序
   3. 输入 `exit` 退出 screen 会话
 
 - 强制关闭会话：
 ```bash
-screen -X -S v2board_monitor quit
+screen -X -S xboard_monitor quit
 ```
 
 ### 进程管理命令
@@ -111,12 +111,12 @@ pkill -f "monitor.py"
 
 - 查看程序运行日志：
 ```bash
-tail -f /root/v2boardbot/node_monitor/logs/node_monitor.log
+tail -f /root/xboardbot/node_monitor/logs/node_monitor.log
 ```
 
 - 查看程序输出（如果使用 nohup）：
 ```bash
-tail -f /root/v2boardbot/node_monitor/monitor.out
+tail -f /root/xboardbot/node_monitor/monitor.out
 ```
 
 ## 故障排除
