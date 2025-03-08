@@ -37,7 +37,7 @@
 1. 克隆仓库
 ```bash
 git clone https://github.com/qwer8856/xboardbot.git
-cd v2boardbot
+cd xboardbot
 ```
 
 2. 一键安装
@@ -49,7 +49,7 @@ sh install.sh
 4. 启动机器人
 ```bash
 /root/xboardbot/python-3.9.7/bin/python3.9 Bot.py  #后台运行
-nohup /root/v2boardbot/python-3.9.7/bin/python3.9 Bot.py &  #静默运行
+nohup /root/xboardbot/python-3.9.7/bin/python3.9 Bot.py &  #静默运行
 ```
 
 ## 🖼️ 界面展示
