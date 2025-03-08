@@ -1,3 +1,0 @@
-2025-03-08 12:04:39,500 - __main__ - INFO - 节点监控服务启动
-2025-03-08 12:04:40,728 - httpx - INFO - HTTP Request: POST https://api.telegram.org/bot8123471451:AAHtM7bh8ZQJ5C7FcGLqyelwcvYaQilP4rk/sendMessage "HTTP/1.1 200 OK"
-2025-03-08 12:04:40,729 - __main__ - INFO - 发送掉线节点通知: 澳大利亚 | BGP | 1.0X
