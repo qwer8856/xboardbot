@@ -21,7 +21,7 @@ cd node_monitor
 mkdir -p logs
 
 # 启动监控程序
-nohup /root/v2boardbot/python-3.9.7/bin/python3.9 monitor.py > logs/monitor.out 2>&1 &
+nohup /root/xboardbot/python-3.9.7/bin/python3.9 monitor.py > logs/monitor.out 2>&1 &
 
 # 保存进程ID
 echo $! > monitor.pid
